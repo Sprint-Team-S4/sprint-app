@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.flightPage {
+  background-image: url('./site-images/SprintBackground.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Tyler add your spicy styles right on in here vvvvvvv */
+
+.Arrivals {color: red}
