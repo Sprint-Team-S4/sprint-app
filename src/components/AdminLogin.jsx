@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AdminB from '../site-images/AdminB.png';
+import '../App.css';
 const AdminLogin = () => {
     const [showLogin, setShowLogin] = useState(false);
 

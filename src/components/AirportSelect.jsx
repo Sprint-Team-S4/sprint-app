@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../App.css';
 
 const AirportSelect = ({ onSelectAirport }) => {
     const [airports, setAirports] = useState([]);

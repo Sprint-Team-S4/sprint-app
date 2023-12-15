@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 
 const ArrDeptSelect = ({ onSelectionChange }) => {
     const [selectedOption, setSelectedOption] = useState('arrivals'); // default to 'arrivals'
@@ -19,7 +20,7 @@ const ArrDeptSelect = ({ onSelectionChange }) => {
 
     return (
         <div>
-            <button
+            <button className='Arrivals'
                 style={{ opacity: selectedOption === 'arrivals' ? 0.5 : 1 }}
                 onClick={() => handleSelection('arrivals')}
             >
