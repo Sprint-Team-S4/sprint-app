@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Prata&display=swap');
+
+.adminPage {
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.headerAddFlight {
+    font-family: 'Prata', serif;
+    font-size: 90px;
+    margin-bottom: 20px; /* Spacing below the header */
+}
+
+.selectAirport, .inputGroup, .flightTypeSelect {
+    margin-bottom: 20px; /* Spacing between sections */
+}
+
+.selectAirport h2, .inputGroup h2, .flightTypeSelect h2 {
+    font-size: 35.33px;
+    margin-bottom: 10px; /* Spacing below the subheaders */
+}
+
+.airportSelect, .airlineInput input, .aircraftInput input, .gateInput input, .typeSelect {
+    background-color: lightgrey;
+    border-radius: 3px;
+    padding: 10px 15px; /* Padding inside the input/select boxes */
+    border: none; /* Remove default border */
+    font-size: 20px; /* Adjust as needed */
+    color: black; /* Text color */
+}
+
+.airlineInput, .aircraftInput, .gateInput {
+    display: inline-block;
+    margin-right: 20px; /* Spacing between inputs */
+}
+
+.airlineInput input, .aircraftInput input, .gateInput input{
+    width: 200px; /* Adjust width as needed */
+}
+
+.submitFlight {
+    background-color: lightgrey;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer; /* Cursor changes to pointer when hovering over the button */
+    margin-top: 20px; /* Spacing above the button */
+}
+
+.selectAirportContainer {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center items horizontally */
+    margin-bottom: 20px; /* Spacing below the container */
+}
+
+.selectAirportLabel {
+    margin-right: 10px; /* Spacing between label and select box */
+    font-size: 35.33px; /* Font size of the label */
+}
