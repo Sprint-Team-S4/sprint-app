@@ -5,8 +5,14 @@ const FlightInfo = ({ airport, flightType }) => {
     const [flights, setFlights] = useState([]);
 
     useEffect(() => {
-        if (airport && flightType) {
-            const apiUrl = `http://localhost:8080/flight/${flightType}/${airport}`;
+        let apiUrl;
+        if (airport === 'ALL') {
+            apiUrl = `http://localhost:8080/flight/${flightType}`;
+        } else if (airport) {
+            apiUrl = `http://localhost:8080/flight/${flightType}/${airport}`;
+        }
+
+        if (apiUrl) {
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
@@ -15,7 +21,7 @@ const FlightInfo = ({ airport, flightType }) => {
                 .catch(error => console.error('Error fetching flight info:', error));
         }
     }, [airport, flightType]);
-
+    
     if (flights.length === 0) {
         return <div>No flights available</div>;
     }
