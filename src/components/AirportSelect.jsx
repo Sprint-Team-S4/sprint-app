@@ -3,30 +3,27 @@ import '../App.css';
 
 const AirportSelect = ({ onSelectAirport }) => {
     const [airports, setAirports] = useState([]);
-    const [selectedAirport, setSelectedAirport] = useState('');
+    const [selectedAirportCode, setSelectedAirportCode] = useState('');
 
-    // Fetch airports from the Spring Boot application
+
     useEffect(() => {
-        // Uncomment and modify the URL to match your API endpoint
-
-        fetch('http://localhost:8080/airport') // Adjust the URL as needed
-          .then(response => response.json())
-          .then(data => setAirports(data))
-          .catch(error => console.error('Error fetching airports:', error));
-
+        fetch('http://localhost:8080/airport')
+            .then(response => response.json())
+            .then(data => setAirports(data))
+            .catch(error => console.error('Error fetching airports:', error));
     }, []);
 
     const handleChange = (event) => {
-        setSelectedAirport(event.target.value);
+        setSelectedAirportCode(event.target.value);
         onSelectAirport(event.target.value);
     };
 
     return (
-        <select className="select-airport" value={selectedAirport} onChange={handleChange}>
-            <option value="" disabled>Airports</option>
+        <select className="select-airport" value={selectedAirportCode} onChange={handleChange}>
+            <option value="" disabled>Select Airport</option>
             {airports.map(airport => (
-                <option key={airport.id} value={airport.id}>
-                    {airport.name}
+                <option key={airport.id} value={airport.code}>
+                    {airport.name} ({airport.code})
                 </option>
             ))}
         </select>
