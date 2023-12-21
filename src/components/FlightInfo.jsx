@@ -1,33 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 
 const FlightInfo = ({ airport, flightType }) => {
-    // Placeholder for flight data
-    const flightData = {
-        aircraft: 'Boeing 737',
-        airline: 'Example Airline',
-        gate: 'A1',
-        city: 'New York',
-        status: flightType // 'arriving' or 'departing'
-    };
+    const [flights, setFlights] = useState([]);
 
-    // Fetch flight data based on airport and flightType
-    // useEffect(() => {
-    //   fetch(`http://your-api/flight-info?airport=${airport}&type=${flightType}`)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       // Set flight data
-    //     })
-    //     .catch(error => console.error('Error fetching flight info:', error));
-    // }, [airport, flightType]);
+    useEffect(() => {
+        if (airport && flightType) {
+            const apiUrl = `http://localhost:8080/flight/${flightType}/${airport}`;
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    setFlights(Array.isArray(data) ? data : [data]);
+                })
+                .catch(error => console.error('Error fetching flight info:', error));
+        }
+    }, [airport, flightType]);
+
+    if (flights.length === 0) {
+        return <div>No flights available</div>;
+    }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px', border: '1px solid #ddd' }}>
-            <div><strong>Aircraft:</strong> {flightData.aircraft}</div>
-            <div><strong>Airline:</strong> {flightData.airline}</div>
-            <div><strong>Gate:</strong> {flightData.gate}</div>
-            <div><strong>City:</strong> {flightData.city}</div>
-            <div><strong>Status:</strong> {flightData.status.charAt(0).toUpperCase() + flightData.status.slice(1)}</div>
+        <div style={{ padding: '20px', border: '1px solid #ddd' }}>
+            <div style={{ marginBottom: '10px' }}>
+                <strong>Airline</strong> | <strong>Flight Number</strong> | <strong>Gate</strong> | <strong>City</strong> | <strong>Status</strong>
+            </div>
+            {flights.map((flight, index) => (
+                <div key={index} style={{ display: 'flex', justifyContent: 'space-around', padding: '10px', border: '1px solid #ddd' }}>
+                    <div>{flight.airline ? flight.airline.airlineName : 'N/A'}</div>
+                    <div>{flight.flightNumber}</div>
+                    <div>{flight.gate ? `${flight.gate.gateNumber} (${flight.gate.terminalNum})` : 'N/A'}</div>
+                    <div>{flight.airport ? flight.airport.name.split(' International')[0] : 'N/A'}</div> {/* Splitting to get only city name */}
+                    <div>{flight.flightStatus}</div>
+                </div>
+            ))}
         </div>
     );
 };
