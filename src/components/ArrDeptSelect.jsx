@@ -20,17 +20,17 @@ const ArrDeptSelect = ({ onSelectionChange }) => {
 
     return (
         <div>
-            <button className='Arrivals'
-                style={{ opacity: selectedOption === 'arrivals' ? 0.5 : 1 }}
+            <button
+                className={`flight-button flight-arrivals ${selectedOption === 'arrivals' ? 'active' : ''}`}
                 onClick={() => handleSelection('arrivals')}
             >
-                Arrivals
+                Arriving Aircrafts
             </button>
             <button
-                style={{ opacity: selectedOption === 'departures' ? 0.5 : 1 }}
+                className={`flight-button flight-departures ${selectedOption === 'departures' ? 'active' : ''}`}
                 onClick={() => handleSelection('departures')}
             >
-                Departures
+                Departing Aircrafts
             </button>
         </div>
     );
