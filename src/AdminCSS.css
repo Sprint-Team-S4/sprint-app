@@ -1,62 +1,85 @@
+/* Import Google Fonts */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Prata&display=swap');
 
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    background-image: url('./site-images/Admin.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+/* Admin Page Container */
 .adminPage {
     text-align: center;
-    font-family: 'Josefin Sans', sans-serif;
+    background: rgba(70, 70, 70, 0.7); /* Example background color with transparency */
+    min-height: 100vh;
 }
 
+/* Header Styles */
 .headerAddFlight {
     font-family: 'Prata', serif;
-    font-size: 90px;
-    margin-bottom: 20px; /* Spacing below the header */
+    font-size: 3em;
+    margin-bottom: 0px;
+    padding: .85em
+;
 }
 
-.selectAirport, .inputGroup, .flightTypeSelect {
-    margin-bottom: 20px; /* Spacing between sections */
+/* Section Styles */
+.selectAirport,
+.inputGroup,
+.flightTypeSelect {
+    margin-bottom: 20px;
 }
 
-.selectAirport h2, .inputGroup h2, .flightTypeSelect h2 {
-    font-size: 35.33px;
-    margin-bottom: 10px; /* Spacing below the subheaders */
+/* Subheader Styles */
+.selectAirport h2,
+.inputGroup h2,
+.flightTypeSelect h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+/* Input and Select Styles */
+.airportSelect,
+.airlineInput input,
+.aircraftInput input,
+.gateInput input,
+.typeSelect {
+    background-color: rgba(211, 211, 211, 0.9); /* Lightgrey with 90% opacity */
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: none;
+    font-size: 1em;
+    color: black; /* Text color set to white */
 }
 
-.airportSelect, .airlineInput input, .aircraftInput input, .gateInput input, .typeSelect {
-    background-color: lightgrey;
-    border-radius: 3px;
-    padding: 10px 15px; /* Padding inside the input/select boxes */
-    border: none; /* Remove default border */
-    font-size: 20px; /* Adjust as needed */
-    color: black; /* Text color */
-}
-
-.airlineInput, .aircraftInput, .gateInput {
-    display: inline-block;
-    margin-right: 20px; /* Spacing between inputs */
-}
-
-.airlineInput input, .aircraftInput input, .gateInput input{
-    width: 200px; /* Adjust width as needed */
-}
-
+/* Button Styles */
 .submitFlight {
-    background-color: lightgrey;
-    color: white;
+    background-color: rgba(211, 211, 211, 0.9); /* Lightgrey with 90% opacity */
+    color: black;
     padding: 10px 20px;
     border-radius: 3px;
     border: none;
-    font-size: 20px;
-    cursor: pointer; /* Cursor changes to pointer when hovering over the button */
-    margin-top: 20px; /* Spacing above the button */
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
+/* Container Styles */
 .selectAirportContainer {
     display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: center; /* Center items horizontally */
-    margin-bottom: 20px; /* Spacing below the container */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
+/* Label Styles */
 .selectAirportLabel {
-    margin-right: 10px; /* Spacing between label and select box */
-    font-size: 35.33px; /* Font size of the label */
+    margin-right: 10px;
+    font-size: 1.5em;
+    color: white; /* Text color set to white */
 }
