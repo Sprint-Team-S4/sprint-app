@@ -13,7 +13,7 @@ const AdminLogin = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.get('http://localhost:8080/admin');
+            const response = await axios.get('http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/admin');
             const users = response.data;
 
             const isAuthenticated = users.some(user => user.username === username && user.password === password);

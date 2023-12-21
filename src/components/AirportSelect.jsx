@@ -5,13 +5,12 @@ const AirportSelect = ({ onSelectAirport }) => {
     const [airports, setAirports] = useState([]);
     const [selectedAirportCode, setSelectedAirportCode] = useState('ALL');
 
+    // Fetch Airports
     useEffect(() => {
-        fetch('http://localhost:8080/airport')
-            .then(response => response.json())
-            .then(data => {
-                setAirports([{ code: 'ALL', name: 'All Airports' }, ...data]);
-            })
-            .catch(error => console.error('Error fetching airports:', error));
+        fetch('http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/airport')
+          .then(response => response.json())
+          .then(data => setAirports(data))
+          .catch(error => console.error('Error fetching airports:', error));
     }, []);
 
     const handleChange = (event) => {

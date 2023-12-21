@@ -10,7 +10,7 @@ const ArrDeptSelect = ({ onSelectionChange, selectedAirport }) => {
 
         // Ensure an airport is selected before fetching
         if (selectedAirport) {
-            const apiUrl = `http://localhost:8080/flight/${option}/${selectedAirport}`;
+            const apiUrl = `http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/flight/${option}/${selectedAirport}`;
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {

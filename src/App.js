@@ -6,6 +6,7 @@ import AdminPage from './components/AdminPage'; // Import the AdminPage componen
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
+//    App.url="http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com"
     render() {
         return (
             <Router>
