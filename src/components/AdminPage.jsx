@@ -6,6 +6,7 @@ const AdminPage = () => {
     const [airlines, setAirlines] = useState([]);
     const [aircraft, setAircraft] = useState([]);
     const [gate, setGate] = useState([]);
+    const [flightNumber, setFlightNumber] = useState('');
     const [flightType, setFlightType] = useState('');
     const [selectedAirport, setSelectedAirport] = useState('');
     const [selectedAirline, setSelectedAirline] = useState('');
@@ -17,25 +18,17 @@ const AdminPage = () => {
 
     // Fetch Airlines - - - -
     useEffect(() => {
-        fetch('http://localhost:8080/airline')
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text || 'Server responded with an error') });
-                }
-                return response.json();
-            })
-            .then(data => {
-                setAirlines(data);
-            })
-            .catch(error => {
-                console.error('Error fetching airlines:', error);
-            });
+        fetch('http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/airline')
+
+          .then(response => response.json())
+          .then(data => setAirlines(data))
+          .catch(error => console.error('Error fetching airlines:', error));
     }, []);
 
     // Fetch Gates - - - -
     useEffect(() => {
         if (selectedAirport) {
-            fetch(`http://localhost:8080/gate/byAirport/${selectedAirport}`)
+            fetch(`http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/gate/byAirport/${selectedAirport}`)
                 .then(response => response.json())
                 .then(data => {
                     setGate(data);
@@ -49,7 +42,7 @@ const AdminPage = () => {
     // Fetch Aircrafts - - - -
     useEffect(() => {
         if (selectedAirline) {
-            fetch(`http://localhost:8080/aircraft/byAirline/${selectedAirline}`)
+            fetch(`http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/aircraft/byAirline/${selectedAirline}`)
                 .then(response => response.json())
                 .then(data => {
                     setAircraft(data);
@@ -61,39 +54,31 @@ const AdminPage = () => {
     }, [selectedAirline]);
 
     // Submission - - - -
-const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const flightData = {
-        airportId: selectedAirport,
-        airlineId: selectedAirline,
-        aircraftId: selectedAircraft,
-        gateId: selectedGate,
-        flightStatus: flightType
-        flightNumber: flightNumber
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const flightData = {
+            airportId: selectedAirport,
+            airlineId: selectedAirline,
+            aircraftId: selectedAircraft,
+            gateId: selectedGate,
+            flightStatus: flightType,
+            flightNumber: flightNumber
+        };
+        fetch('http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/flight/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(flightData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Flight created:', data);
+        })
+        .catch(error => {
+            console.error('Error creating flight:', error);
+        });
     };
-
-    // POST
-    fetch('http://localhost:8080/flight/create', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(flightData),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Flight created:', data);
-    })
-    .catch(error => {
-        console.error('Error creating flight:', error);
-    });
-};
 
 // ADMIN PAGE - - - - - - - - - - - - - -
     return (
@@ -108,48 +93,56 @@ const handleSubmit = (event) => {
                 <div className="inputGroup">
                    <div className="airlineInput">
                        <h2>AIRLINE</h2>
-                       <select
-                           value={selectedAirline}
-                           onChange={(e) => setSelectedAirline(e.target.value)}
-                           className="airlineSelect"
-                           disabled={!selectedAirport}
-                       >
-                           <option value="">Select an airline</option>
-                           {airlines.map((airline) => (
-                               <option key={airline.id} value={airline.id}>{airline.name}</option>
+                       <select  className="airlineSelect"
+                                value={selectedAirport}
+                                onChange={(e) => setSelectedAirline(e.target.value)}>
+                           <option value="" disabled>Select an airline</option>
+                           {airlines.map(airline => (
+                               <option key={airline.id} value={airline.id}>
+                                   {airline.name}
+                               </option>
                            ))}
                        </select>
                    </div>
-                <div className="aircraftInput">
-                    <h2>AIRCRAFT</h2>
-                    <select
-                        value={selectedAircraft}
-                        onChange={(e) => setSelectedAircraft(e.target.value)}
-                        className="aircraftSelect"
-                        disabled={!selectedAirline || !aircraft.length}
-                    >
-                        <option value="">Select an aircraft</option>
-                        {aircraft.map((ac) => (
-                            <option key={ac.id} value={ac.id}>{ac.name}</option>
-                        ))}
-                    </select>
+                    <div className="aircraftInput">
+                        <h2>AIRCRAFT</h2>
+                        <select
+                            value={selectedAircraft}
+                            onChange={(e) => setSelectedAircraft(e.target.value)}
+                            className="aircraftSelect"
+                            disabled={!selectedAirline || !aircraft.length}
+                        >
+                            <option value="">Select an aircraft</option>
+                            {aircraft.map((ac) => (
+                                <option key={ac.id} value={ac.id}>{ac.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="gateInput">
+                        <h2>GATE</h2>
+                        <select
+                            value={selectedGate}
+                            onChange={(e) => setSelectedGate(e.target.value)}
+                            className="gateSelect"
+                            disabled={!selectedAirport}
+                        >
+                            <option value="">Select a gate</option>
+                            {gate.map((gate) => (
+                                <option key={gate.id} value={gate.id}>{gate.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                     <div className="flightNumberInput">
+                        <h2>FLIGHT NUMBER</h2>
+                        <input
+                            type="text"
+                            value={flightNumber}
+                            onChange={(e) => setFlightNumber(e.target.value)}
+                            className="flightNumberInput"
+                            placeholder="Enter Flight Number"
+                        />
+                    </div>
                 </div>
-
-                <div className="gateInput">
-                    <h2>GATE</h2>
-                    <select
-                        value={selectedGate}
-                        onChange={(e) => setSelectedGate(e.target.value)}
-                        className="gateSelect"
-                        disabled={!selectedAirport}
-                    >
-                        <option value="">Select a gate</option>
-                        {gate.map((gate) => (
-                            <option key={gate.id} value={gate.id}>{gate.name}</option>
-                        ))}
-                    </select>
-                </div>
-            </div>
 
             <div className="flightTypeSelect">
                 <h2>DEPARTING/ARRIVING</h2>

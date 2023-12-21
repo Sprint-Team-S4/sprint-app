@@ -5,11 +5,9 @@ const AirportSelect = ({ onSelectAirport }) => {
     const [airports, setAirports] = useState([]);
     const [selectedAirport, setSelectedAirport] = useState('');
 
-    // Fetch airports from the Spring Boot application
+    // Fetch Airports
     useEffect(() => {
-        // Uncomment and modify the URL to match your API endpoint
-
-        fetch('http://localhost:8080/airport') // Adjust the URL as needed
+        fetch('http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/airport')
           .then(response => response.json())
           .then(data => setAirports(data))
           .catch(error => console.error('Error fetching airports:', error));

@@ -9,7 +9,7 @@ const ArrDeptSelect = ({ onSelectionChange }) => {
         onSelectionChange(option);
         // Uncomment and add logic to trigger a query based on the selection
         /*
-        fetch(`http://localhost:8080/api/flights?airport=${selectedAirport}&type=${option}`)
+        fetch(`http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/api/flights?airport=${selectedAirport}&type=${option}`)
           .then(response => response.json())
           .then(data => {
             // Handle the fetched data
