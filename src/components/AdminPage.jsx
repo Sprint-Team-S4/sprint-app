@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../AdminCSS.css'
+import '../AdminCSS.css';
 
 const AdminPage = () => {
     const [selectedAirport, setSelectedAirport] = useState('');
@@ -52,6 +52,7 @@ const AdminPage = () => {
                         type="text"
                         value={airline}
                         onChange={(e) => setAirline(e.target.value)}
+                        className="airlineInput"
                     />
                 </div>
                 <div className="aircraftInput">
@@ -60,6 +61,7 @@ const AdminPage = () => {
                         type="text"
                         value={aircraft}
                         onChange={(e) => setAircraft(e.target.value)}
+                        className="aircraftInput"
                     />
                 </div>
                 <div className="gateInput">
@@ -68,6 +70,7 @@ const AdminPage = () => {
                         type="text"
                         value={gate}
                         onChange={(e) => setGate(e.target.value)}
+                        className="gateInput"
                     />
                 </div>
             </div>
