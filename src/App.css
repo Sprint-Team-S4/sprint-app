@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+
 .App {
   text-align: center;
 }
@@ -47,3 +50,55 @@
 /* Tyler add your spicy styles right on in here vvvvvvv */
 
 .Arrivals {color: red}
+
+
+.tagline {
+  font-family: 'Lemon', serif;
+}
+
+.tagline2 {
+  font-family: 'League Gothic', sans-serif;
+  color: #FFFFFF;
+}
+
+.select-airport {
+  height: 54px;
+  width: 138px;
+  border-radius: 40px;
+  background: linear-gradient(180deg, #7DD0FF 0%, #006DAA 100%);
+  border: none;
+  padding-left: 16px;
+  font-size: 19px;
+  outline: none;
+  font-family: 'Lemon', serif;
+  color: #FFFFFF;
+}
+
+.flight-button {
+  width: 182px;
+  height: 66px;
+  background: linear-gradient(to bottom, #7DD0FF, #006BA7);
+  color: white;
+  font-family: 'Lemon', sans-serif;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin: 24px;
+}
+
+.flight-arrivals {
+  border-radius: 40px 0 0 40px;
+}
+
+.flight-departures {
+  border-radius: 0 40px 40px 0;
+}
+
+.flight-view-box {
+  background-color: rgba(4, 131, 196, 0.37);
+}
+
+.flight-button.active {
+  opacity: 0.5; /* Adjust opacity as needed */
+}

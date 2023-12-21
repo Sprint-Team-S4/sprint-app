@@ -27,12 +27,14 @@ const FlightPage = () => {
     return (
         <div className="flightPage">
             <AdminLogin />
+            <h1 className="tagline" style={{ fontSize: '64px' }}>Sprint Airlines</h1>
+            <h2 className="tagline" style={{ fontSize: '20px' }}>Fly Faster, Soar Smarter</h2><div className="flight-view-box">
             <div style={{ textAlign: 'center', margin: '20px 0' }}>
-                <AirportSelect onSelectAirport={setSelectedAirport} />
+                <AirportSelect onSelectAirport={setSelectedAirport} /><h2 className="tagline2" style={{ fontSize: '32px'}}>What will you be searchin for today laddy?</h2>
                 <ArrDeptSelect onSelectionChange={setFlightType} />
             </div>
             <FlightInfo airport={selectedAirport} flightType={flightType} />
-        </div>
+        </div></div>
     );
 };
 

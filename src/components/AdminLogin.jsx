@@ -2,22 +2,29 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminB from '../site-images/AdminB.png';
 import '../App.css';
-
+import axios from 'axios';
 const AdminLogin = () => {
     const [showLogin, setShowLogin] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-        const isAuthenticated = true; // Assume the user is authenticated for now
 
-        if (isAuthenticated) {
-            navigate('/admin'); // Navigate to the admin page
-        } else {
-            // Handle login failure
-            alert('Invalid credentials');
+        try {
+            const response = await axios.get('http://localhost:8080/admin');
+            const users = response.data;
+
+            const isAuthenticated = users.some(user => user.username === username && user.password === password);
+
+            if (isAuthenticated) {
+                navigate('/admin');             } else {
+                               alert('Invalid credentials');
+            }
+        } catch (error) {
+                       console.error('Login error:', error);
+            alert('An error occurred during login.');
         }
     };
 
