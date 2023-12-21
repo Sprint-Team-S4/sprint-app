@@ -61,10 +61,39 @@ const AdminPage = () => {
     }, [selectedAirline]);
 
     // Submission - - - -
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Submission logic here
+const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const flightData = {
+        airportId: selectedAirport,
+        airlineId: selectedAirline,
+        aircraftId: selectedAircraft,
+        gateId: selectedGate,
+        flightStatus: flightType
+        flightNumber: flightNumber
     };
+
+    // POST
+    fetch('http://localhost:8080/flight/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(flightData),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Flight created:', data);
+    })
+    .catch(error => {
+        console.error('Error creating flight:', error);
+    });
+};
 
 // ADMIN PAGE - - - - - - - - - - - - - -
     return (
