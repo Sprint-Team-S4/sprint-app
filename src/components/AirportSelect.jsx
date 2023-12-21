@@ -3,7 +3,7 @@ import '../App.css';
 
 const AirportSelect = ({ onSelectAirport }) => {
     const [airports, setAirports] = useState([]);
-    const [selectedAirport, setSelectedAirport] = useState('');
+    const [selectedAirportCode, setSelectedAirportCode] = useState('ALL');
 
     // Fetch Airports
     useEffect(() => {
@@ -11,19 +11,17 @@ const AirportSelect = ({ onSelectAirport }) => {
           .then(response => response.json())
           .then(data => setAirports(data))
           .catch(error => console.error('Error fetching airports:', error));
-
     }, []);
 
     const handleChange = (event) => {
-        setSelectedAirport(event.target.value);
+        setSelectedAirportCode(event.target.value);
         onSelectAirport(event.target.value);
     };
 
     return (
-        <select className="select-airport" value={selectedAirport} onChange={handleChange}>
-            <option value="" disabled>Airports</option>
+        <select className="select-airport" value={selectedAirportCode} onChange={handleChange}>
             {airports.map(airport => (
-                <option key={airport.id} value={airport.id}>
+                <option key={airport.code} value={airport.code}>
                     {airport.name}
                 </option>
             ))}
