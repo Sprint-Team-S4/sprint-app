@@ -8,9 +8,9 @@ const AirportSelect = ({ onSelectAirport }) => {
     // Fetch Airports
     useEffect(() => {
         fetch('http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/airport')
-          .then(response => response.json())
-          .then(data => setAirports(data))
-          .catch(error => console.error('Error fetching airports:', error));
+            .then(response => response.json())
+            .then(data => setAirports(data))
+            .catch(error => console.error('Error fetching airports:', error));
     }, []);
 
     const handleChange = (event) => {
@@ -19,9 +19,10 @@ const AirportSelect = ({ onSelectAirport }) => {
     };
 
     return (
-        <select className="select-airport" value={selectedAirportCode} onChange={handleChange}>
+        <select value={selectedAirportCode} onChange={handleChange}>
+            <option value="" disabled>Select an airport</option>
             {airports.map(airport => (
-                <option key={airport.code} value={airport.code}>
+                <option key={airport.id} value={airport.id}>
                     {airport.name}
                 </option>
             ))}

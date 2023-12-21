@@ -7,9 +7,9 @@ const FlightInfo = ({ airport, flightType }) => {
     useEffect(() => {
         let apiUrl;
         if (airport === 'ALL') {
-            apiUrl = `http://localhost:8080/flight/${flightType}`;
+            apiUrl = `http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/flight/${flightType}`;
         } else if (airport) {
-            apiUrl = `http://localhost:8080/flight/${flightType}/${airport}`;
+            apiUrl = `http://sprint6-env.eba-9kw5xtpk.us-east-1.elasticbeanstalk.com/flight/${flightType}/${airport}`;
         }
 
         if (apiUrl) {
