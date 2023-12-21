@@ -21,7 +21,7 @@ const FlightInfo = ({ airport, flightType }) => {
                 .catch(error => console.error('Error fetching flight info:', error));
         }
     }, [airport, flightType]);
-    
+
     if (flights.length === 0) {
         return <div>No flights available</div>;
     }
